@@ -14,7 +14,7 @@
 - None had real time mocap (&amp; simultaneous mapping)
 
 ## Method
-Pipeline in (simple)words:
+Pipeline in (simple) words:
 1. Preparation: 1 head-mounted camera &amp; 6 IMUs (& some ground truth points, seems like they use around 2-4 points)
 2. Calibration: T-pose for mocap; camera is calibrated and initial map points are triangulated
 3. Input: inertial measurements (into 4)  & image (into 5)
