@@ -37,9 +37,21 @@ accurate enough to hit the ball.
 
 - Stage 3: Motion Embedding
   - Input: the corrected motions from stage 2
+  - Output: a diverse range of motions
   - Motion embedding model is based on motion VAE model (MVAE), while adapting like so:
     - Condition on pose features in global coords => prevent global drift
     - Besides predict pose, also predict phase (bc tennis motion is cyclic) (why do we predict - don't we just output the simulation? maybe they do mean outputting some kind of pose)
   - Pose representation is also defined in a similar manner to stage 2's state or action. Motion phase is represented using a cyclic variable theta = \[0, 2pi\].
 
 - Stage 4: High-level motion planning policy
+  - Input: motion embedding from stage 3
+  - Output: novel motions, that allow the characters to ACTUALLY hit the ball to specific target locations
+  - How: take the latents from the motion embedding, combined with joint correction (because output from stage 3 might still contain artifacts, which will affect the ability of character to hit the ball accurately), fixing the eye of character on the ball & forcing a 2-hand grip during a 2-handed swing (these two seem more like from an aesthetic/accuracy POV)
+  - The design of state, reward and training is similar to stage 2
+
+## Results
+The results are impressive, the system can generate realistic tennis matches with diverse motions, and solo tennis sets. Though the system can imitate players to an extent, imitating detailed distinctive player styles is still an area for improvement.
+Estimated motion quality is amazing, thanks to the 3-stage estimation & refinement (stage 1 to 3)
+
+## How do I rate this paper?
+10/10 for content - I don't understand a lot of it, but the topic is very interesting. 9/10 for readability - I can grasp the general idea of the paper
